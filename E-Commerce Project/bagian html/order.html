@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Barang</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 10px;
+            background: #1e1e1e;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .order-form {
+            margin-top: 20px;
+        }
+
+        .order-form label {
+            display: block;
+            margin-bottom: 10px;
+            color: #bb86fc;
+        }
+
+        .order-form select, .order-form input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #444;
+            background-color: #333;
+            color: #e0e0e0;
+            border-radius: 5px;
+        }
+
+        .order-form button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #bb86fc;
+            color: #121212;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .order-form button[type="submit"]:hover {
+            background-color: #9f6bcd;
+        }
+
+        .order-form p {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Order Barang</h2>
+        <form class="order-form">
+            <label for="nama-barang">Nama Barang:</label>
+            <select id="nama-barang" name="nama-barang">
+                <option value="Fides T-Shirt First Edition">Fides T-Shirt First Edition</option>
+                <option value="Fides T-Shirt Bull Edition">Fides T-Shirt Bull Edition</option>
+                <option value="Fides Jacket">Fides Jacket</option>
+            </select>
+            <label for="harga-barang">Harga Barang:</label>
+            <p id="harga-barang">Rp 149.000</p>
+            <label for="jumlah-barang">Jumlah Barang:</label>
+            <input type="number" id="jumlah-barang" name="jumlah-barang" min="1" value="1">
+            <label for="total-belanjaan">Total Belanjaan:</label>
+            <p id="total-belanjaan">Rp 149.000</p>
+            <button type="submit">Pesan</button>
+        </form>
+    </div>
+
+    <script>
+        const namaBarangSelect = document.getElementById('nama-barang');
+        const hargaBarangElement = document.getElementById('harga-barang');
+        const jumlahBarangInput = document.getElementById('jumlah-barang');
+        const totalBelanjaanElement = document.getElementById('total-belanjaan');
+
+        namaBarangSelect.addEventListener('change', updatePrice);
+        jumlahBarangInput.addEventListener('input', updateTotal);
+
+        function updatePrice() {
+            const namaBarang = namaBarangSelect.value;
+            let hargaBarang;
+
+            switch (namaBarang) {
+                case 'Fides T-Shirt First Edition':
+                    hargaBarang = 149000;
+                    break;
+                case 'Fides T-Shirt Bull Edition':
+                    hargaBarang = 249000;
+                    break;
+                case 'Fides Jacket':
+                    hargaBarang = 349000;
+                    break;
+            }
+
+            hargaBarangElement.textContent = `Rp ${hargaBarang.toLocaleString()}`;
+            updateTotal();
+        }
+
+        function updateTotal() {
+            const jumlahBarang = jumlahBarangInput.value;
+            const namaBarang = namaBarangSelect.value;
+            let hargaBarang;
+
+            switch (namaBarang) {
+                case 'Fides T-Shirt First Edition':
+                    hargaBarang = 149000;
+                    break;
+                case 'Fides T-Shirt Bull Edition':
+                    hargaBarang = 249000;
+                    break;
+                case 'Fides Jacket':
+                    hargaBarang = 349000;
+                    break;
+            }
+
+            const totalBelanjaan = hargaBarang * jumlahBarang;
+            totalBelanjaanElement.textContent = `Rp ${totalBelanjaan.toLocaleString()}`;
+        }
+
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const namaBarang = namaBarangSelect.value;
+            const jumlahBarang = jumlahBarangInput.value;
+            const totalBelanjaan = totalBelanjaanElement.textContent.replace('Rp ', '').replace(/\./g, '');
+
+            
+            window.location.href = `payment.html?namaBarang=${namaBarang}&jumlahBarang=${jumlahBarang}&totalBelanjaan=${totalBelanjaan}`;
+        });
+
+        
+        updatePrice();
+    </script>
+</body>
+</html>

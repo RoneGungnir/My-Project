@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Follow Us on Social Media</title>
+    <style>
+        @keyframes moveText {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #1e1e1e;
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+
+        h1 {
+            color: #bb86fc;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .content {
+            text-align: center;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .content p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #e0e0e0;
+            display: inline-block;
+            white-space: nowrap;
+            animation: moveText 10s linear infinite;
+        }
+
+        .social-media {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .social-media div {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .social-media img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 15px;
+            filter: invert(1);
+        }
+
+        .social-media a {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #bb86fc;
+            color: #121212;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .social-media a:hover {
+            background-color: #9f6bcd;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Follow Us on Social Media</h1>
+
+    <div class="content">
+        <p>Untuk Mendapatkan Info Produk Terbaru</p>
+    </div>
+
+    <div class="social-media">
+        <div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo">
+            <p>Follow us on Instagram</p>
+            <a href="https://www.instagram.com/" target="_blank">Follow</a>
+        </div>
+        <div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo">
+            <p>Like us on Facebook</p>
+            <a href="https://www.facebook.com" target="_blank">Like</a>
+        </div>
+        <div>
+            <img src="Twitter.png" alt="Twitter Logo">
+            <p>Follow us on Twitter</p>
+            <a href="https://www.twitter.com" target="_blank">Follow</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
