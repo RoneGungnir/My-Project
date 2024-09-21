@@ -1,0 +1,272 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black;
+    margin: 0;
+    position: relative;
+    overflow-y: scroll;
+}
+
+.header-container {
+    position: relative;
+    width: 100%;
+    background-color: #f1f1f1; /* Optional: to highlight the header */
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: #f1f1f1;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 24px; /* Adjust font size as needed */
+}
+
+
+.login-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: purple;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.login-button:hover {
+    background-color: #0056b3;
+}
+.video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    object-fit: cover;
+}
+.info-box {
+    position: absolute;
+    opacity: 100; /* Initially hidden */
+    bottom: -100px; /* Initially positioned below the viewport */
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    background-color: none;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 1;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.info-box:nth-child(odd) {
+    transform: translateY(-50%);
+    top: 50%;
+    color: white;
+    animation: fadeInUp 1s ease forwards;
+}
+.info-box:nth-child(even) {
+    transform: translateY(50%);
+    bottom: 0;
+    color: white;
+    animation: fadeInUp 1s ease forwards;
+}
+.info-box p {
+    margin-bottom: 10px;
+}
+
+.video-box {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 600px;
+    height: 225px; /* Tinggi box video ditambahkan */
+    z-index: 1;
+    overflow: hidden; /* Untuk memastikan video tetap di dalam kotak */
+    padding-top: 20px; /* Ruang kosong di bagian atas video */
+    padding-bottom: 20px; /* Ruang kosong di bagian bawah video */
+}
+.video-box iframe {
+    width: 100%;
+    height: 100%;
+}
+
+.tebal{
+    font-weight: bold;
+    color: white;
+    font-size: 36px;
+}
+video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1000;
+    background-size: cover;
+    transition: 1s opacity;
+    opacity: 0.6; /* Atur kecerahan video */
+}
+.login-container {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+/* Style for the login button and dropdown */
+.login-button {
+    background-color: purple; /* Green background */
+    color: white; /* White text */
+    padding: 10px 20px; /* Add some padding */
+    border: none; /* Remove border */
+    cursor: pointer; /* Pointer/hand icon */
+    font-size: 16px; /* Increase font size */
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.show {display: block;}
+
+.hidden {
+    display: none;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+.show {
+    display: block;
+}
+.join-button {
+    display: block;
+    width: 200px;
+    padding: 10px;
+    margin: 20px auto;
+    background-color: #6a1b9a;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 18px;
+    transition: background-color 0.3s ease-in-out;
+}
+.join-button:hover {
+    background-color: #4a148c;
+}
+.floating-button {
+    display: block;
+    width: 200px;
+    padding: 10px;
+    margin: 40px auto;
+    background-color: #6a1b9a;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 18px;
+    transition: background-color 0.3s ease-in-out;
+    animation: floating 2s ease-in-out infinite;
+}
+.floating-button:hover {
+    background-color: #4a148c;
+}
+@keyframes floating {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+.info-box .tebal {
+    font-weight: bold;
+}
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.content {
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    text-align: center;
+}
+.welcome-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 20px;
+}

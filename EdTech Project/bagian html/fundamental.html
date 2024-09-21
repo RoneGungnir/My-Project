@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dasar Machine Learning</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #181818;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            display: flex; 
+            justify-content: space-between; 
+        }
+        .sidebar {
+            width: 20%;
+            background-color: #252525;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .sidebar h2 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #333;
+        }
+        .sidebar a:hover {
+            background-color: #555;
+        }
+        .content {
+            width: 75%; 
+            position: relative; 
+        }
+        .header {
+            margin-bottom: 20px;
+        }
+        .course-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #333;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            position: relative; 
+        }
+        .progress-bar div {
+            height: 20px;
+            background-color: purple;
+            border-radius: 5px;
+            text-align: center;
+            color: white;
+            position: absolute; 
+            top: 0;
+            left: 0;
+            line-height: 20px; 
+            border-top-right-radius: 0; 
+            border-bottom-right-radius: 0; 
+            width: 0; 
+            transition: width 0.3s ease; 
+            z-index: 1; 
+        }
+        .lessons {
+            list-style: none;
+            padding: 0;
+        }
+        .lessons li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #252525;
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+        .lessons li:nth-child(odd) {
+            background-color: #2b2b2b;
+        }
+        .lessons li button {
+            background-color: purple;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; 
+        }
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .continue-button {
+            background-color: purple;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            display: none; 
+        }
+        .continue-button:hover {
+            background-color: #5d4ab8; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <ul class="lessons">
+                <li>
+                    <span id="lesson1">Machine Learning Explain</span>
+                    <button class="start-button" data-video="What is Machine Learning_.mp4">Start</button>
+                    <span class="checklist" id="checklist1" style="display: none;">✓</span>
+                </li>
+                <li>
+                    <span id="lesson1">Machine Learning Explain</span>
+                    <button class="start-button" data-video="What is Machine Learning_.mp4">Start</button>
+                    <span class="checklist" id="checklist1" style="display: none;">✓</span>
+                </li>
+                <li>
+                    <span id="lesson1">Machine Learning Explain</span>
+                    <button class="start-button" data-video="What is Machine Learning_.mp4">Start</button>
+                    <span class="checklist" id="checklist1" style="display: none;">✓</span>
+                </li>
+                <li>
+                    <span id="lesson1">Machine Learning Explain</span>
+                    <button class="start-button" data-video="What is Machine Learning_.mp4">Start</button>
+                    <span class="checklist" id="checklist1" style="display: none;">✓</span>
+                </li>
+                <li>
+                    <span id="lesson1">Machine Learning Explain</span>
+                    <button class="start-button" data-video="What is Machine Learning_.mp4">Start</button>
+                    <span class="checklist" id="checklist1" style="display: none;">✓</span>
+                </li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="header">
+                <div class="course-title">Pengertian Dan Penggunaan Machine Learning</div>
+                <div class="progress-bar">
+                    <div id="progress" style="width: 0;"></div>
+                </div>
+                <button class="continue-button" id="continueButton" style="display: none;">Continue to Next Video</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var startButtons = document.querySelectorAll('.start-button');
+        var continueButton = document.getElementById('continueButton');
+        var progressBar = document.getElementById('progress');
+        
+        
+        startButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                
+                var videoUrl = this.getAttribute('data-video');
+                
+                
+                var videoElement = document.createElement('video');
+                videoElement.src = videoUrl;
+                videoElement.controls = true;
+                
+                
+                var content = document.querySelector('.content');
+                content.innerHTML = ''; 
+                var videoContainer = document.createElement('div');
+                videoContainer.classList.add('video-container');
+                videoContainer.appendChild(videoElement);
+                content.appendChild(videoContainer);
+
+                
+                videoElement.addEventListener('timeupdate', function() {
+                    var progressValue = (this.currentTime / this.duration) * 100;
+                    progressBar.style.width = progressValue + '%';
+                    progressBar.textContent = Math.round(progressValue) + '%'; 
+                    if (progressValue === 100) {
+                        continueButton.style.display = 'inline'; 
+                    }
+                });
+
+                
+                videoElement.addEventListener('ended', function() {
+                    var checklist = document.querySelector('.checklist');
+                    checklist.style.display = 'inline';
+                    continueButton.style.display = 'inline';
+                });
+
+                
+                videoElement.play();
+            });
+        });
+
+        
+        continueButton.addEventListener('click', function() {
+        });
+    </script>
+</body>
+</html>

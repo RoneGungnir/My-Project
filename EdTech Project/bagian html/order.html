@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Barang</title>
+    <style>
+     body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 10px;
+            background: #1e1e1e;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .order-form {
+            margin-top: 20px;
+        }
+
+        .order-form label {
+            display: block;
+            margin-bottom: 10px;
+            color: #bb86fc;
+        }
+
+        .order-form select, .order-form input[type="number"], .order-form input[type="text"], .order-form input[type="email"], .order-form textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #444;
+            background-color: #333;
+            color: #e0e0e0;
+            border-radius: 5px;
+        }
+
+        .order-form button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #bb86fc;
+            color: #121212;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .order-form button[type="submit"]:hover {
+            background-color: #9f6bcd;
+        }
+
+        .order-form p {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Order</h2>
+        <form class="order-form" id="order-form">
+            <label for="nama-barang">Nama Barang:</label>
+            <select id="nama-barang" name="nama-barang" required>
+                <option value="Lifetime Subscription">Lifetime Subscription</option>
+            </select>
+            <label for="harga-barang">Harga:</label>
+            <p id="harga-barang">Rp 200000</p>
+            <label for="jumlah-barang">Jumlah Barang:</label>
+            <input type="number" id="jumlah-barang" name="jumlah-barang" min="1" value="1" required>
+            <label for="total-belanjaan">Total:</label>
+            <p id="total-belanjaan">Rp 200000</p>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <button type="submit">Order</button>
+        </form>
+    </div>
+
+    <script>
+        const orderForm = document.getElementById('order-form');
+        const namaBarangSelect = document.getElementById('nama-barang');
+        const hargaBarangElement = document.getElementById('harga-barang');
+        const jumlahBarangInput = document.getElementById('jumlah-barang');
+        const totalBelanjaanElement = document.getElementById('total-belanjaan');
+        const emailInput = document.getElementById('email');
+
+        const prices = {
+            'Lifetime Subscription': 300000,
+        };
+
+        namaBarangSelect.addEventListener('change', updatePrice);
+        jumlahBarangInput.addEventListener('input', updateTotal);
+
+        function updatePrice() {
+            const namaBarang = namaBarangSelect.value;
+            const hargaBarang = prices[namaBarang];
+            hargaBarangElement.textContent = `Rp ${hargaBarang.toLocaleString('id-ID')}`;
+            updateTotal();
+        }
+
+        function updateTotal() {
+            const jumlahBarang = parseInt(jumlahBarangInput.value, 10) || 0;
+            const namaBarang = namaBarangSelect.value;
+            const hargaBarang = prices[namaBarang];
+            const totalBelanjaan = hargaBarang * jumlahBarang;
+            totalBelanjaanElement.textContent = `Rp ${totalBelanjaan.toLocaleString('id-ID')}`;
+        }
+
+        orderForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (orderForm.checkValidity()) {
+                const namaBarang = namaBarangSelect.value;
+                const jumlahBarang = parseInt(jumlahBarangInput.value, 10) || 0;
+                const totalBelanjaan = prices[namaBarang] * jumlahBarang;
+                const email = emailInput.value;
+                
+                window.location.href = `payment.html?namaBarang=${encodeURIComponent(namaBarang)}&jumlahBarang=${encodeURIComponent(jumlahBarang)}&totalBelanjaan=${encodeURIComponent(totalBelanjaan)}&email=${encodeURIComponent(email)}`;
+            } else {
+                alert('Mohon lengkapi semua kolom sebelum melanjutkan.');
+            }
+        });
+
+        
+        updatePrice();
+    </script>
+</body>
+</html>
+
+

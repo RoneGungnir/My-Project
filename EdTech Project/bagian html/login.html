@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+        <div class="links">
+            <a href="register.html">Create Account</a>
+            <a href="forgot.html">Forgot Password</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            let users = localStorage.getItem('users');
+            if (users) {
+                users = JSON.parse(users);
+            } else {
+                alert('No users registered');
+                return;
+            }
+
+            const user = users.find(user => user.email === email && user.password === password);
+            if (user) {
+                localStorage.setItem('loggedInUser', user.username); 
+                localStorage.setItem('loggedInEmail', email); 
+                if (email === "special1@example.com" || email === "special2@example.com" || email === "special3@example.com" || email === "special3@example.com" || email === "special3@example.com" || email === "special3@example.com") {
+                    window.location.href = 'course.html'; 
+                } else {
+                    window.location.href = 'index.html'; 
+                }
+            } else {
+                alert('Invalid email or password');
+            }
+        });
+    </script>
+</body>
+</html>

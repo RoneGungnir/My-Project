@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Password Reset</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .confirm-container {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .confirm-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .confirm-container form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .confirm-container label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .confirm-container input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .confirm-container button {
+            background-color: purple;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .confirm-container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="confirm-container">
+        <h2>Confirm Password Reset</h2>
+        <form id="confirmResetForm">
+            <label for="resetCode">Enter Code:</label>
+            <input type="text" id="resetCode" name="resetCode" required>
+            <button type="submit">Submit Code</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const confirmResetForm = document.getElementById('confirmResetForm');
+
+            confirmResetForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const resetCode = document.getElementById('resetCode').value;
+                const storedResetCode = localStorage.getItem('resetCode');
+
+                if (resetCode === storedResetCode) {
+                    
+                    localStorage.removeItem('resetCode'); 
+
+                    
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Code Verified',
+                        text: 'Code verified successfully. You can now reset your password.',
+                        showConfirmButton: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = 'reset_password.html';
+                        }
+                    });
+                } else {
+                    
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Invalid Code',
+                        text: 'The code entered is invalid. Please try again.',
+                        showConfirmButton: true
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
