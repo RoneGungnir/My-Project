@@ -1,0 +1,448 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.logo-img {
+    height: auto; 
+    width: 45%;      
+    max-width: 150px;
+    display: block;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; /* Use a font of your choice */
+    background-image: url('095d891e4c72645b032190b011136217.jpg'); /* Replace with your image path */
+    background-size: cover; /* Ensures the image covers the entire viewport */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    height: 100vh; /* Sets the height to 100% of the viewport height */
+}
+
+header {
+    background-color: darkblue;
+    color: white;
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    transition: top 0.5s; 
+}
+
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 2rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.cta {
+    background-color: darkblue;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+#hero {
+    background: url('background.mp4') no-repeat center center/cover;
+    height: 100vh;
+    color: white;
+    text-align: center;
+    padding-top: 10rem;
+}
+
+#hero h2 {
+    font-size: 2.5rem; 
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#hero p {
+    font-size: 1.2rem;
+    margin: 1rem 0;
+}
+
+#hero .btn {
+    padding: 1rem 2rem;
+    background-color: darkblue;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+#services, #contact {
+    padding: 4rem 2rem;
+}
+
+#about h3 {
+    font-size: 2.5rem; 
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+}
+
+#about p {
+    font-size: 1.5rem; 
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+    color: white;
+}
+
+#services {
+    padding: 4rem 2rem;
+    position: relative; 
+    color: white;
+}
+
+.services-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    color: white;
+}
+
+.service-item {
+    width: 30%;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.1); 
+    border-radius: 15px;
+    text-align: center;
+    backdrop-filter: blur(10px); 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3), 
+                0 0 30px rgba(0, 0, 0, 0.2);
+    position: relative; 
+    overflow: hidden; 
+}
+
+.service-item h3 {
+    color: #e8491d; 
+    position: relative;
+    z-index: 1; 
+}
+
+.service-item p {
+    color: #fff; 
+    position: relative;
+    z-index: 1; 
+}
+
+
+.service-item::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: linear-gradient(135deg, darkblue, rgba(0, 0, 0, 0.3));
+    transform: translate(-50%, -50%) rotate(30deg); /* Rotasi untuk efek hologram */
+    filter: blur(20px); /* Blur untuk lembut */
+    z-index: 0; /* Pastikan di belakang konten */
+    opacity: 0.5; /* Transparansi untuk efek halus */
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form input, form textarea {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    padding: 0.7rem;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+/* Chat button styles */
+.chat-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.chat-button {
+    width: 60px;
+    height: 60px;
+    background-color: whitesmoke; /* Biru tua */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.chat-button img {
+    width: 30px;
+    height: 30px;
+}
+
+/* Chatbox styles */
+.chat-box {
+    display: none;
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 400px;  /* Ubah lebar chatbox menjadi lebih luas */
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    z-index: 1000;
+}
+
+.chat-box h4 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #003366;
+    margin-bottom: 0.5rem;
+}
+
+.chat-content {
+    display: flex;
+    flex-direction: column; /* Susun pesan secara vertikal */
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    color: black;
+}
+
+.chat-content p {
+    margin: 0;
+    padding: 0.5rem 0;
+}
+
+.chat-box input[type="text"] {
+    width: calc(100% - 60px);
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.chat-box button {
+    padding: 0.5rem 1rem;
+    background-color: #003366;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.chat-box button:hover {
+    background-color: #002244;
+}
+
+
+.user {
+    background-color: #0084ff;
+    color: white;
+    padding: 12px 16px; /* Tambahkan padding untuk ruang lebih */
+    margin: 10px 0;
+    border-radius: 12px;
+    text-align: right;
+    align-self: flex-end; /* Posisi di sebelah kanan */
+    word-wrap: break-word;
+    white-space: pre-wrap;  /* Agar teks yang terlalu panjang bisa dibungkus ke baris berikutnya */
+}
+
+/* Styling untuk pesan bot */
+.bot {
+    background-color: #e5e5ea;
+    color: black;
+    padding: 12px 16px; /* Tambahkan padding untuk ruang lebih */
+    margin: 10px 0;
+    border-radius: 12px;
+    text-align: left;
+    max-width: 60%;
+    align-self: flex-start; /* Posisi di sebelah kiri */
+    margin-right: auto;
+}
+
+#contact {
+    padding: 50px;
+    text-align: center;
+    background-color: black;
+    margin-top: 50px;
+}
+
+#contact h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+#contactForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#contactForm label {
+    margin-top: 10px;
+    font-size: 1.2rem;
+}
+
+#contactForm input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#whatsappButton {
+    background-color: #25D366;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#whatsappButton:hover {
+    background-color: #20b954;
+}
+
+#why-easychat {
+    background-color: black;
+    padding: 40px;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+#why-easychat h3 {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.why-easychat-list {
+    list-style-type: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.why-easychat-list li {
+    font-size: 18px;
+    padding: 10px 0;
+    text-align: left;
+    position: relative;
+    padding-left: 30px;
+}
+
+.why-easychat-list li:before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    font-size: 18px;
+    color: green;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px; 
+    background-color: #007BFF; 
+    color: white; 
+    text-decoration: none; 
+    border-radius: 5px; 
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+}
+
+.btn:hover {
+    background-color: #0056b3; 
+    transform: scale(1.05); 
+}
+
+.faq-section {
+    margin: 20px 0;
+    color:white;
+}
+
+.faq-item {
+    margin-bottom: 10px;
+    color: black;
+}
+
+.faq-question {
+    cursor: pointer;
+    padding: 10px;
+    background-color: white; /* Warna latar belakang */
+    border: 1px solid #ccc; /* Garis batas */
+    border-radius: 5px; /* Sudut melengkung */
+    transition: background-color 0.3s; /* Efek transisi */
+}
+
+.faq-question:hover {
+    background-color: blue; /* Warna latar belakang saat hover */
+}
+
+.faq-answer {
+    display: none; /* Sembunyikan jawaban secara default */
+    padding: 10px;
+    border: 1px solid #ccc; /* Garis batas untuk jawaban */
+    border-radius: 5px; /* Sudut melengkung */
+    background-color: #fafafa; /* Warna latar belakang jawaban */
+}
+
+.arrow {
+    float: right; /* Menggeser panah ke sebelah kanan */
+    margin-left: 10px; /* Ruang antara teks dan panah */
+    transition: transform 0.3s; /* Efek transisi untuk panah */
+}
+
+.faq-item.active .arrow {
+    transform: rotate(90deg); /* Memutar panah saat aktif */
+}
